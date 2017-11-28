@@ -1,0 +1,9 @@
+'use strict';
+
+export const SET_CIRCUIT = 'SET_CIRCUIT_STATE';
+export const SET_CIRCUIT_SUCCESS = 'SET_CIRCUIT_SUCCESS';
+export const SET_CIRCUIT_FAIL = 'SET_CIRCUIT_FAIL'
+
+export const GET_HEALTH = 'GET_HEALTH'
+export const GET_HEALTH_SUCCESS = 'GET_HEALTH_SUCCESS';
+export const GET_HEALTH_FAIL = 'GET_HEALTH_FAIL'
