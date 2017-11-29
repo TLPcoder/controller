@@ -9,7 +9,8 @@ const Main = () => {
           <Header/>
           <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
           <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
-          <button>Reset Redis Cache</button>
+          <button className='links'>Reset Redis Cache</button>
+          <h1>BFF controller</h1>
         </div>
     )
 }

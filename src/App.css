@@ -46,7 +46,8 @@
 .active,
 .activeOpened,
 .copy,
-.links {
+.links,
+.serviceName {
   background-color: #4CAF50;
   /* Green */
   border: white solid 1px;
@@ -119,13 +120,21 @@
 
 .hystrixServiceHealth {
   width: 200px;
-  height: 200px;
+  height:170px;
+  overflow: hidden;
   background-color: rgb(250, 249, 249);
   border: rgba(226, 225, 225, 0.856) solid 1px;
   border-radius: 5px;
+  z-index: 1;
   margin: 5px;
   float: left;
 }
+/* 
+.hystrixServiceHealth:active {
+  z-index: 10;
+  max-height: 200px;
+  margin-bottom: -120px;
+} */
 
 .hystrixServiceHealthInfo>p {
   text-align: left;
@@ -194,4 +203,51 @@
 .run-command {
   position: relative;
   top: 20px;
+}
+
+.serviceName {
+  color:white;
+  padding: 15px;
+  width: 140px;
+  background-color: #66DBF9;
+  border-radius: 5px;
+  max-width: 180px;
+  border: solid rgb(85, 182, 206) 1px;
+}
+
+.openedStatus {
+  color:white;
+  background-color: rgb(243, 51, 51);
+}
+
+.closedStatus {
+  color:white;
+  background-color: #4CAF50;
+}
+
+ul {
+  list-style-type: none;
+  width: 409px;
+  margin: auto;
+  border: solid white 3px;
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li p {
+  display: block;
+  color: white;
+  border-right: solid white 1px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li:last-child p{
+  border: none
 }

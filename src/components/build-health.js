@@ -9,8 +9,11 @@ const BuildHealth = (props) => {
             hystrixServices.push(
                 <div className = 'hystrixServiceHealth'>
                     <div className='hystrixServiceHealthInfo'>
-                        <h3>{key}</h3>
-                        <p>Status: {info[key].Status || null}</p>
+                        <h3 className={
+                         info[key].Status === 'opened' ?
+                         'serviceName openedStatus' :
+                         'serviceName closedStatus'
+                         }>{key}</h3>
                         <p>ThresholdPercentage: {info[key].ThresholdPercentage || null}</p>
                         <p>Retry: {info[key].Retry * .001 + ' seconds' || null}</p>
                     </div>
@@ -37,9 +40,11 @@ const BuildHealth = (props) => {
     const health =  props.health
     return (
         <div>
-            <p>Status: {health.status}</p>
-            <p>cfInstanceIndex: {health.cfInstanceIndex}</p>
-            <p>nodeEnv: {health.nodeEnv}</p>
+            <ul>
+                <li><p>Status: {health.status}</p></li>
+                <li><p>cfInstanceIndex: {health.cfInstanceIndex}</p></li>
+                <li><p>nodeEnv: {health.nodeEnv}</p></li>
+            </ul>
             <div className = 'BFFServiceContainer'>
                 {upStream(props.health.upstream)}
             </div>
