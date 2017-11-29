@@ -29,14 +29,14 @@ class Health extends Component {
     return this.state.healthStatus !== 'loading...'?
         <div className="App">
             <Header/>  
-            <button><Link to='/'>Main</Link></button>
-            <button><Link to='/circuit'>Circuit</Link></button>
+            <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+            <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
             <BuildHealth health={this.props.health}/>
         </div> :
         <div className="App">
             <Header/>  
-            <button><Link to='/'>Main</Link></button>
-            <button><Link to='/circuit'>Circuit</Link></button>
+            <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+            <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
             <p>{this.state.healthStatus}</p>
         </div>
     }

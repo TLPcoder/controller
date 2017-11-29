@@ -23,13 +23,18 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .neutral {
-  background-color: white; /* Green */
-  border: black solid 1px;
+  background-color: rgb(250, 249, 249);
+  /* Green */
+  border: rgba(226, 225, 225, 0.856) solid 1px;
   color: black;
   padding: 15px 32px;
   text-align: center;
@@ -38,8 +43,12 @@
   font-size: 16px;
 }
 
-.active, .activeOpened {
-  background-color: #4CAF50; /* Green */
+.active,
+.activeOpened,
+.copy,
+.links {
+  background-color: #4CAF50;
+  /* Green */
   border: white solid 1px;
   color: white;
   padding: 15px 32px;
@@ -49,8 +58,56 @@
   font-size: 16px;
 }
 
+
+/* .active:hover,
+.activeOpened:hover .copy:hover {
+  border: solid rgb(64, 148, 67) 1px;
+}
+
+.neutral:hover {
+  border: solid rgba(226, 225, 225, 0.692) 2px;
+}
+
+.opened:hover {
+  border: solid rgb(194, 41, 41) 1px;
+} */
+
+.copy {
+  padding: 5px 13px;
+  text-decoration: none;
+}
+
+.links {
+  background-color: #66DBF9;
+}
+
+.removeDec {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.copy {
+  padding: 5px 13px;
+  text-decoration: none;
+}
+
+
+/* .links:hover {
+  border: solid rgb(88, 187, 212) 1px
+} */
+
+.removeDec {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .opened {
-  background-color: rgb(243, 51, 51); /* Green */
+  background-color: rgb(243, 51, 51);
+  /* Green */
   border: rgba(255, 255, 255, 0) solid 1px;
   color: white;
   padding: 15px 32px;
@@ -58,4 +115,83 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.hystrixServiceHealth {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(250, 249, 249);
+  border: rgba(226, 225, 225, 0.856) solid 1px;
+  border-radius: 5px;
+  margin: 5px;
+  float: left;
+}
+
+.hystrixServiceHealthInfo>p {
+  text-align: left;
+  margin-left: 5px;
+}
+
+.BFFService {
+  float: left;
+  height: 160px;
+  background-color: rgb(250, 249, 249);
+  border: rgba(226, 225, 225, 0.856) solid 1px;
+  border-radius: 5px;
+  width: 518px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 5px;
+  text-overflow: clip;
+}
+
+.BFFServiceContainer {
+  height: 520px;
+  width: 1060px;
+  margin: auto;
+  clear: both;
+}
+
+.hystrixServiceHealthContainer {
+  margin-top: 200px;
+  width: 1060px;
+  margin: auto;
+}
+
+.createStatusControls {
+  position: relative;
+  top: 40px;
+  width: 340px;
+  height: 50px;
+  margin: auto;
+}
+
+.individualControls {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
+.createCheckList {
+  width: 630px;
+  height: 400px;
+  margin: auto;
+  position: relative;
+  top: 50px;
+}
+
+.individualServices {
+  float: left;
+  text-align: center;
+  margin: 5px
+}
+
+.individualServices>input {
+  width: 200px;
+  text-align: center;
+}
+
+.run-command {
+  position: relative;
+  top: 20px;
 }

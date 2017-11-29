@@ -14,8 +14,8 @@ export function * health({payload}) {
     };
     try {
         const health = yield call(axios, config);
-        yield put({type: types.SET_SERVICE_LIST, payload: health});
         yield put({type: types.GET_HEALTH_SUCCESS, payload: health});
+        yield put({type: types.SET_SERVICE_LIST, payload: health});
     } catch (err) {
         yield put({type: types.GET_HEALTH_FAIL, err});
     }

@@ -51,7 +51,7 @@ class Circuit extends Component {
     }
 
     createStatusControls = () => ['Open', 'Close', 'Reset'].map(status =>
-        <div>
+        <div className='individualControls'>
             <input type="button" name='statusControl' value={status} onClick={(event) => {
                 this.resetContols({open: 'neutral',close: 'neutral',reset: 'neutral'})
                 this.resetContols({[status.toLowerCase()]: 'active'})
@@ -59,26 +59,37 @@ class Circuit extends Component {
             }} className={this.props.circuits.controls[status.toLowerCase()]}/>
         </div>)
 
+    createAll = () => (
+        <div className='individualServices'>
+            <input type='button' value ='All' onClick={(event) => {
+                if(this.props.circuits.services.all === 'neutral') {
+                    this.props.createServiceList({data: this.props.health})
+                    this.setState({apis:'all'})
+                }
+            this.setClassName(event)
+            }} className={this.props.circuits.services.all}/>
+        </div>
+    )
+    createService = (key) => (
+        <div className='individualServices'>
+            <input type='button' name={key} value={key} onClick={(event) =>{
+                if(this.state.apis === 'all') {
+                    this.setState({apis: key})
+                    this.resetServices({all: 'neutral'})
+                    this.setClassName(event)
+                } else {
+                    this.setCommand(event)
+                }
+            }} className={this.props.circuits.services[key]}/>
+        </div>
+    )
     createCheckList = () => {
         var checkBoxs = [];
-        checkBoxs.push(<input type='button' value ='All' onClick={(event) => {
-            if(this.props.circuits.services.all === 'neutral') {
-                this.props.createServiceList({data: this.props.health})
-                this.setState({apis:'all'})
-            }
-            this.setClassName(event)
-            }} className={this.props.circuits.services.all}/>)
+        checkBoxs.push(this.createAll())
         const hystrixService = this.props.health.upstream[this.props.health.upstream.length-1].info
         for(let key in hystrixService){
             if(!key.toLowerCase().startsWith('check')) {
-                checkBoxs.push(<div><input type='button' name={key} value={key} onClick={(event) =>{
-                    if(this.state.apis === 'all') {
-                        this.setState({apis: key})
-                        this.resetServices({all: 'neutral'})
-                    } else {
-                        this.setCommand(event)
-                    }
-                }} className={this.props.circuits.services[key]}/></div>)
+                checkBoxs.push(this.createService(key))
             }
         }
         return checkBoxs;
@@ -90,19 +101,25 @@ class Circuit extends Component {
             return (
                 <div className="App">
                     <Header/>
-                    <button><Link to='/health'>Health</Link></button>
-                    <button><Link to='/'>Main</Link></button>
-                    {this.createStatusControls()}
-                    {this.createCheckList()}
-                    <input type="button" value='Run Commmand' onClick={this.runCommand}/>
+                    <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
+                    <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                    <br/>
+                    <input className='neutral run-command' type="button" value='Run Commmand' onClick={this.runCommand}/>
+                    <div className='createStatusControls'>
+                        {this.createStatusControls()}
+                    </div>
+                    <br/>
+                    <div className='createCheckList'>
+                        {this.createCheckList()}
+                    </div>
                 </div>
             )
         } else {
             return (
                 <div className="App">
                     <Header/>
-                    <button><Link to='/health'>Health</Link></button>
-                    <button><Link to='/'>Main</Link></button>
+                    <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
+                    <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
                     <p>Loading...</p>
                 </div>
             )
