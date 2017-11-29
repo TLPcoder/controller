@@ -16,7 +16,7 @@ export function * ciruitController({payload}) {
     };
     try {
         const curcuitStatus = yield call(axios, config);
-        yield put({type: types.SET_CIRCUIT_SUCCESS, payload: curcuitStatus});
+        // yield put({type: types.SET_CIRCUIT_SUCCESS, payload: curcuitStatus});
     } catch (err) {
         yield put({type: types.SET_CIRCUIT_FAIL, err});
     }

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Header from './header'
 import * as getHealth from '../actions/health-actions'
+import * as setCicuit from '../actions/circuit-actions';
 
 class Circuit extends Component {
     constructor(props){
@@ -13,32 +14,30 @@ class Circuit extends Component {
             status: ''
         }
     }
-    componentWillMount = () => {
-        this.props.getHealth()
-    }
+    componentWillMount = () => (this.props.getHealth())
+    resetContols = (controls) => (this.props.setControlClassName(controls))
+    resetServices = (controls) => (this.props.setServiceClassName(controls))
+    setStatus = (status) => (this.setState({status: status}))
+    trimApis = () => (this.state.apis.split(',').filter(e => e.length > 0).join(','))
+
     runCommand = () => {
-
+        this.props.circuitController({api: this.trimApis(), status: this.state.status})
+        this.props.getHealth()
+        this.setState({apis: ''})
     }
-
-    createStatusControls = () => ['Open', 'Close', 'Reset'].map(status => <input type="button" value={status} onClick={(event) => {
-        this.createStatusControls()
-        this.setClassName(event);
-        this.setStatus(status.toLowerCase())
-    }} className='neutral'/>)
 
     setClassName = (event) => {
         if (event.target.className === 'neutral') {
-            event.target.className = 'active';
+            this.resetServices({[event.target.value.toLowerCase()]:'active'})
         } else if (event.target.className === 'active') {
-            event.target.className = 'neutral';
+            this.resetServices({[event.target.value.toLowerCase()]:'neutral'})
         } else if(event.target.className === 'opened') {
-            event.target.className = 'activeOpened';
+            this.resetServices({[event.target.value.toLowerCase()]:'activeOpened'})
         } else if(event.target.className === 'activeOpened') {
-            event.target.className = 'opened';
+            this.resetServices({[event.target.value.toLowerCase()]:'opened'})
         }  
     }
     setCommand = (event) => {
-        this.setClassName(event)
         if (event.target.className === 'neutral') {
             this.setState({apis: this.state.apis + ',' + event.target.value})
         } else if (event.target.className === 'active') {
@@ -48,22 +47,45 @@ class Circuit extends Component {
         } else if(event.target.className === 'activeOpened') {
             this.setState({apis: this.state.apis.replace(event.target.value, '')})
         } 
+        this.setClassName(event)
     }
 
-    setStatus = (status) => this.setState({status: status})
+    createStatusControls = () => ['Open', 'Close', 'Reset'].map(status =>
+        <div>
+            <input type="button" name='statusControl' value={status} onClick={(event) => {
+                this.resetContols({open: 'neutral',close: 'neutral',reset: 'neutral'})
+                this.resetContols({[status.toLowerCase()]: 'active'})
+                this.setStatus(status.toLowerCase())
+            }} className={this.props.circuits.controls[status.toLowerCase()]}/>
+        </div>)
 
     createCheckList = () => {
         var checkBoxs = [];
+        checkBoxs.push(<input type='button' value ='All' onClick={(event) => {
+            if(this.props.circuits.services.all === 'neutral') {
+                this.props.createServiceList({data: this.props.health})
+                this.setState({apis:'all'})
+            }
+            this.setClassName(event)
+            }} className={this.props.circuits.services.all}/>)
         const hystrixService = this.props.health.upstream[this.props.health.upstream.length-1].info
         for(let key in hystrixService){
-            const className = hystrixService[key].Status === 'opened' ? 'opened' : 'neutral'
-            checkBoxs.push(<div><input type='button' name={key} value={key} onClick={this.setCommand} className={className}/></div>)
+            if(!key.toLowerCase().startsWith('check')) {
+                checkBoxs.push(<div><input type='button' name={key} value={key} onClick={(event) =>{
+                    if(this.state.apis === 'all') {
+                        this.setState({apis: key})
+                        this.resetServices({all: 'neutral'})
+                    } else {
+                        this.setCommand(event)
+                    }
+                }} className={this.props.circuits.services[key]}/></div>)
+            }
         }
         return checkBoxs;
     }
+
     render() {
-        console.log(this.props);
-        console.log('state', this.state);
+        console.log('props', this.state);
         if(Object.keys(this.props.health).length > 0){
             return (
                 <div className="App">
@@ -72,7 +94,7 @@ class Circuit extends Component {
                     <button><Link to='/'>Main</Link></button>
                     {this.createStatusControls()}
                     {this.createCheckList()}
-                    <input type="button" value='Run Commmand' onClick={this.runCommand()}/>
+                    <input type="button" value='Run Commmand' onClick={this.runCommand}/>
                 </div>
             )
         } else {
@@ -88,4 +110,4 @@ class Circuit extends Component {
     }
 }
 
-export default connect(({circuits, health})=>({circuits, health}), getHealth)(Circuit)
+export default connect(({circuits, health})=>({circuits, health}), {...getHealth, ...setCicuit})(Circuit)
