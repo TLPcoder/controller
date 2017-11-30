@@ -3,7 +3,6 @@ import logo from '../logo.svg';
 import {Link} from 'react-router-dom';
 import Header from './header';
 import ResetCache from './reset-cache';
-import ChooseEnv from './env';
 
 const Main = () => {
     return (
@@ -14,7 +13,6 @@ const Main = () => {
             <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
             <ResetCache/>
           </div>
-          <ChooseEnv/>
         </div>
     )
 }

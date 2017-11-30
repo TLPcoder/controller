@@ -17,3 +17,4 @@ export const RESET_CACHE_SUCCESS = 'RESET_CACHE_SUCCESS';
 export const RESET_CACHE_FAIL = 'RESET_CACHE_FAIL';
 
 export const SET_ENV = 'SET_ENV';
+export const SET_CLASS_NAME = 'SET_CLASS_NAME';

@@ -47,7 +47,7 @@
 .activeOpened,
 .copy,
 .links,
-.serviceName {
+.serviceName, .activeENV {
   background-color: #4CAF50;
   /* Green */
   border: white solid 1px;
@@ -59,19 +59,9 @@
   font-size: 16px;
 }
 
-
-/* .active:hover,
-.activeOpened:hover .copy:hover {
-  border: solid rgb(64, 148, 67) 1px;
+.activeENV{
+  background-color: #66DBF9;
 }
-
-.neutral:hover {
-  border: solid rgba(226, 225, 225, 0.692) 2px;
-}
-
-.opened:hover {
-  border: solid rgb(194, 41, 41) 1px;
-} */
 
 .copy {
   padding: 5px 13px;
@@ -226,10 +216,10 @@
 
 ul {
   list-style-type: none;
-  width: 409px;
+  max-width: 530px;
   margin: auto;
-  border: solid white 3px;
-  border-radius: 10px;
+  border: solid white 30px;
+  border-radius: 35px;
   padding: 0;
   overflow: hidden;
   background-color: #333;
@@ -237,6 +227,7 @@ ul {
 
 li {
   float: left;
+  width: 176px;
 }
 
 li p {
@@ -277,4 +268,14 @@ li:last-child p{
   .createCheckList {
     width: 423px;
   }
+}
+
+.envControls{
+  position: sticky;
+  text-align: right
+}
+
+.envControls input{
+  padding: 8px 20px;
+  margin-right: 5px;
 }
