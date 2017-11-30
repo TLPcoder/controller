@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import Header from './header'
 import * as getHealth from '../actions/health-actions'
 import * as setCicuit from '../actions/circuit-actions';
+import ResetCache from './reset-cache';
 
 class Circuit extends Component {
     constructor(props){
@@ -101,8 +102,11 @@ class Circuit extends Component {
             return (
                 <div className="App">
                     <Header/>
-                    <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
-                    <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                    <div className='menu'> 
+                        <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                        <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
+                        <ResetCache/>
+                    </div>
                     <br/>
                     <input className='neutral run-command' type="button" value='Run Commmand' onClick={this.runCommand}/>
                     <div className='createStatusControls'>
@@ -118,8 +122,11 @@ class Circuit extends Component {
             return (
                 <div className="App">
                     <Header/>
-                    <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
-                    <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                    <div className='menu'> 
+                        <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                        <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
+                        <ResetCache/>
+                    </div>
                     <p>Loading...</p>
                 </div>
             )

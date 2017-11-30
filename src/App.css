@@ -158,7 +158,6 @@
   height: 520px;
   width: 1060px;
   margin: auto;
-  clear: both;
 }
 
 .hystrixServiceHealthContainer {
@@ -250,4 +249,32 @@ li p {
 }
 li:last-child p{
   border: none
+}
+
+.main-menu, .menu{
+  background-color:rgb(250, 249, 249);
+  border: rgba(226, 225, 225, 0.856) solid 1px;
+  width: 464px;
+  margin:auto;
+  position: relative;
+  top: 20px;
+  padding-top:20px;
+  border-radius: 5px;
+  height: 70px;
+  margin-bottom:20px;
+}
+
+@media only screen and (max-width: 1150px) {
+  .BFFServiceContainer {
+    width: 532px;
+  }
+  .hystrixServiceHealthContainer {
+    width: 636px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .createCheckList {
+    width: 423px;
+  }
 }

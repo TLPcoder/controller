@@ -6,6 +6,7 @@ import * as getHealth from '../actions/health-actions'
 import { Link } from 'react-router-dom';
 import Header from './header';
 import BuildHealth from './build-health';
+import ResetCache from './reset-cache';
 
 class Health extends Component {
   constructor(props){
@@ -29,14 +30,20 @@ class Health extends Component {
     return this.state.healthStatus !== 'loading...'?
         <div className="App">
             <Header/>  
-            <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
-            <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
+            <div className='menu'> 
+                <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
+                <ResetCache/>
+            </div> 
             <BuildHealth health={this.props.health}/>
         </div> :
         <div className="App">
-            <Header/>  
-            <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
-            <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
+            <Header/>
+            <div className='menu'> 
+                <button className='links'><Link className='removeDec' to='/'>Main</Link></button>
+                <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
+                <ResetCache/>
+            </div> 
             <p>{this.state.healthStatus}</p>
         </div>
     }

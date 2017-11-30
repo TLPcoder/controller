@@ -1,4 +1,3 @@
-'use strict';
 import {takeEvery} from 'redux-saga/effects';
 import * as types from '../../actions/action-types';
 import {ciruitController} from '../task/circuit-task'; 
