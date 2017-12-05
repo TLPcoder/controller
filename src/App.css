@@ -47,7 +47,8 @@
 .activeOpened,
 .copy,
 .links,
-.serviceName, .activeENV {
+.serviceName,
+.activeENV {
   background-color: #4CAF50;
   /* Green */
   border: white solid 1px;
@@ -59,13 +60,17 @@
   font-size: 16px;
 }
 
-.activeENV{
+.activeENV {
   background-color: #66DBF9;
 }
 
 .copy {
   padding: 5px 13px;
   text-decoration: none;
+}
+
+.loading {
+  margin-top:50px;
 }
 
 .links {
@@ -110,7 +115,7 @@
 
 .hystrixServiceHealth {
   width: 200px;
-  height:170px;
+  height: 170px;
   overflow: hidden;
   background-color: rgb(250, 249, 249);
   border: rgba(226, 225, 225, 0.856) solid 1px;
@@ -119,6 +124,8 @@
   margin: 5px;
   float: left;
 }
+
+
 /* 
 .hystrixServiceHealth:active {
   z-index: 10;
@@ -195,7 +202,7 @@
 }
 
 .serviceName {
-  color:white;
+  color: white;
   padding: 15px;
   width: 140px;
   background-color: #66DBF9;
@@ -205,12 +212,12 @@
 }
 
 .openedStatus {
-  color:white;
+  color: white;
   background-color: rgb(243, 51, 51);
 }
 
 .closedStatus {
-  color:white;
+  color: white;
   background-color: #4CAF50;
 }
 
@@ -238,44 +245,127 @@ li p {
   padding: 14px 16px;
   text-decoration: none;
 }
-li:last-child p{
+
+li:last-child p {
   border: none
 }
 
-.main-menu, .menu{
-  background-color:rgb(250, 249, 249);
+.main-menu,
+.menu {
+  background-color: rgb(250, 249, 249);
   border: rgba(226, 225, 225, 0.856) solid 1px;
   width: 464px;
-  margin:auto;
+  margin: auto;
   position: relative;
   top: 20px;
-  padding-top:20px;
+  padding-top: 20px;
   border-radius: 5px;
   height: 70px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 1150px) {
+  .BFFService {
+    width: 100%;
+  }
   .BFFServiceContainer {
-    width: 532px;
+    width: 80%;
+    margin-left: 10%
+  }
+  .BFFService {
+    width: 100%;
   }
   .hystrixServiceHealthContainer {
     width: 636px;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .createCheckList {
     width: 423px;
   }
+  ul {
+    max-width: 180px;
+  }
+  li p {
+    border: none;
+  }
 }
 
-.envControls{
+@media only screen and (max-width: 810px) {
+  .createCheckList {
+    width: 423px;
+  }
+  ul {
+    max-width: 180px;
+  }
+  li p {
+    border: none;
+  }
+  .hystrixServiceHealthContainer {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .hystrixServiceHealth {
+    width: 100%
+  }
+  .hystrixServiceHealthInfo>p {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .menu {
+    height: 120px;
+    width: 240px;
+  }
+}
+
+.envControls {
   position: sticky;
   text-align: right
 }
 
-.envControls input{
+.envControls input {
   padding: 8px 20px;
   margin-right: 5px;
 }
+@media only screen and (max-width: 515px) {
+  .envControls input {
+    padding: 5px 15px;
+    font-size: 10px;
+    margin-right: 5px;
+  }
+  .createCheckList{
+    width: 80%;
+    margin-left:10%;
+  }
+  .individualServices {
+    float: left;
+    text-align: center;
+    margin: 5px;
+    width: 100%;
+  }
+  .individualServices>input {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.loader {
+  margin-top: 100px;
+  }
+  
+  .loader svg {
+  height: 12em;
+  width: 12em;
+  }
+  
+  .loader svg path {
+  stroke-width: 0px;
+  }
+  
+  .loader svg path {
+  fill: #44cbf8;
+  stroke: none;
+  }

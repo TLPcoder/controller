@@ -11,7 +11,6 @@ export function * ciruitController({payload}) {
             'x-api': payload.api,
             'x-circuit-status': payload.status,
             'Content-Type': 'application/json',
-            'X-trevor': true
         }
     };
     try {

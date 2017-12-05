@@ -10,15 +10,16 @@ class ChooseEnv extends Component{
 
     setEnv = (event) => {
         this.props.setEnv({env: event.target.value.toLowerCase()})
-        this.props.setClassName({dit: 'neutral', qa: 'neutral', hreg: 'neutral', preprod: 'neutral'});
+        this.props.setClassName({dit: 'neutral', qa: 'neutral', hreg: 'neutral', preprod: 'neutral', local: 'neutral'});
         this.props.setClassName({[event.target.value.toLowerCase()]: 'activeENV'});
-        this.props.getHealth();
+        this.props.getHealth({env: this.props.env.env});
     }
 
     render(){
         const style = this.props.env.className;
         return(
             <div className='envControls'>
+                <input className={style.local} type="button" onClick={this.setEnv}value='LOCAL'/>
                 <input className={style.dit} type="button" onClick={this.setEnv}value='DIT'/>
                 <input className={style.qa} type="button" onClick={this.setEnv}value='QA'/>
                 <input className={style.hreg} type="button" onClick={this.setEnv}value='HREG'/>

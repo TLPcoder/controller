@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from '../logo.svg';
+import loading from '../loading.svg'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Header from './header'
@@ -15,7 +15,7 @@ class Circuit extends Component {
             status: ''
         }
     }
-    componentWillMount = () => (this.props.getHealth())
+    componentWillMount = () => (this.props.getHealth({env: this.props.env.env}))
     resetContols = (controls) => (this.props.setControlClassName(controls))
     resetServices = (controls) => (this.props.setServiceClassName(controls))
     setStatus = (status) => (this.setState({status: status}))
@@ -23,7 +23,7 @@ class Circuit extends Component {
 
     runCommand = () => {
         this.props.circuitController({api: this.trimApis(), status: this.state.status})
-        this.props.getHealth()
+        this.props.getHealth({env: this.props.env.env})
         this.setState({apis: ''})
     }
 
@@ -127,11 +127,13 @@ class Circuit extends Component {
                         <button className='links'><Link className='removeDec' to='/health'>Health</Link></button>
                         <ResetCache/>
                     </div>
-                    <p>Loading...</p>
+                    <div className="loader" >
+                        <img src={loading} className="App-logo" alt="logo" />
+                    </div>
                 </div>
             )
         }
     }
 }
 
-export default connect(({circuits, health})=>({circuits, health}), {...getHealth, ...setCicuit})(Circuit)
+export default connect(({circuits, health, env})=>({circuits, health, env}), {...getHealth, ...setCicuit})(Circuit)

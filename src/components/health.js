@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import loading from '../loading.svg';
 import '../App.css';
 import {connect} from 'react-redux'
 import * as getHealth from '../actions/health-actions'
@@ -16,7 +16,7 @@ class Health extends Component {
     }
   }
   componentWillMount = () => {
-    this.props.getHealth()
+    this.props.getHealth({env: this.props.env.env});
   }
   shouldComponentUpdate = (nextProps, nextState) => {
     if(nextProps.health.status !== this.state.healthStatus){
@@ -44,9 +44,11 @@ class Health extends Component {
                 <button className='links'><Link className='removeDec' to='/circuit'>Circuit</Link></button>
                 <ResetCache/>
             </div> 
-            <p>{this.state.healthStatus}</p>
+            <div className="loader" >
+                <img src={loading} className="App-logo" alt="logo" />
+            </div>
         </div>
     }
 }
 
-export default connect(({circuits, health})=>({circuits, health}), getHealth)(Health)
+export default connect(({circuits, health, env})=>({circuits, health, env}), getHealth)(Health)

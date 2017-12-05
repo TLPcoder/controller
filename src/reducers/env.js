@@ -1,12 +1,13 @@
 import * as types from '../actions/action-types'
 
 const initState = {
-    env: null,
+    env: 'dit',
     className: {
-        dit: 'neutral',
+        dit: 'activeENV',
         qa: 'neutral',
         hreg: 'neutral',
-        preprod: 'neutral'
+        preprod: 'neutral',
+        local: 'neutral'
     }
 }
 
